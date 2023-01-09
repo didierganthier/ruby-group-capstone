@@ -189,9 +189,9 @@ You can deploy this project using:
 
 👤 **Author2**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@didierganthier_](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@Shedrack-Sunday](https://github.com/Shedrack-Sunday)
+- Twitter: [@DeleSundayS](https://twitter.com/DeleSundayS)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/Shedrack-Sunday)
 
 👤 **Author2**
 
