@@ -1,4 +1,22 @@
+require 'json'
 require './item'
+require './book-label/book'
+
+# Load the data from the JSON files
+items_json = File.read("items.json") rescue "[]"
+labels_json = File.read("labels.json") rescue "[]"
+items = JSON.parse(items_json, object_class: OpenStruct)
+labels = JSON.parse(labels_json, object_class: OpenStruct)
+
+at_exit do
+  # Serialize the items and labels arrays to JSON
+  items_json = items.to_json
+  labels_json = labels.to_json
+
+  # Save the JSON strings to files
+  File.write("items.json", items_json)
+  File.write("labels.json", labels_json)
+end
 
 def list_items(items)
   items.each do |item|
@@ -26,42 +44,68 @@ def move_item_to_archive(items)
   end
 end
 
-def add_new_item(items)
-  puts 'Enter the publish date (YYYY-MM-DD):'
-  publish_date = Date.parse(gets.chomp)
-  item = Item.new(publish_date)
-  puts 'Enter the genre:'
-  item.genre = gets.chomp
-  puts 'Enter the author:'
-  item.author = gets.chomp
-  puts 'Enter the source:'
-  item.source = gets.chomp
-  puts 'Enter the label:'
-  item.label = gets.chomp
-  items << item
-end
-
-# An array of items
-items = []
-
-loop do
-  puts 'Choose an option:'
-  puts '1. List all items'
-  puts '2. Move an item to the archive'
-  puts '3. Add a new item'
-  puts '4. Quit'
-
-  choice = gets.chomp
-  case choice
-  when '1'
-    list_items(items)
-  when '2'
-    move_item_to_archive(items)
-  when '3'
-    add_new_item(items)
-  when '4'
-    break
-  else
-    puts 'Invalid choice'
+def add_new_book(items)
+    puts 'Enter the publish date (YYYY-MM-DD):'
+    publish_date = Date.parse(gets.chomp)
+    puts 'Enter the title:'
+    title = gets.chomp
+    puts 'Enter the cover state:'
+    cover_state = gets.chomp
+    book = Book.new(title, cover_state, publish_date, archived: false)
+    # puts 'Enter the genre:'
+    # book.genre = gets.chomp
+    # puts 'Enter the author:'
+    # book.author = gets.chomp
+    # puts 'Enter the source:'
+    # book.source = gets.chomp
+    # puts 'Enter the label:'
+    # book.label = gets.chomp
+    items << book
   end
-end
+  
+  
+  def list_labels(labels)
+    labels.each do |label|
+      puts "ID: #{label.id}"
+      puts "Title: #{label.title}"
+      puts "Color: #{label.color}"
+      puts "Items: #{label.items.map(&:id).join(", ")}"
+      puts ''
+    end
+  end
+  
+  loop do
+    puts 'Choose an option:'
+    puts '1. List all books'
+    puts '2. List all labels'
+    puts '3. Add a new book'
+    puts '4. Quit'
+  
+    choice = gets.chomp
+    case choice
+    when '1'
+      # List all books
+      items.select { |item| item.is_a?(Book) }.each do |book|
+        puts "ID: #{book.id}"
+        puts "Genre: #{book.genre}"
+        puts "Author: #{book.author}"
+        puts "Source: #{book.source}"
+        puts "Label: #{book.label}"
+        puts "Publish date: #{book.publish_date}"
+        puts "Cover state: #{book.cover_state}"
+        puts "Archived: #{book.archived}"
+        puts ''
+      end
+    when '2'
+      # List all labels
+      list_labels(labels)
+    when '3'
+      # Add a new book
+      add_new_book(items)
+    when '4'
+      break
+    else
+      puts 'Invalid choice'
+    end
+  end
+  
