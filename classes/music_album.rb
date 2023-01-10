@@ -8,5 +8,4 @@ class MusicAlbum < Item
     super(publish_date)
     @name = name
   end
-
 end
