@@ -1,4 +1,4 @@
-require_relative '.././game'
+require 'spec_helper'
 require 'date'
 
 describe '#Game' do
@@ -6,8 +6,8 @@ describe '#Game' do
     date = Date.today
     published = date - (365 * 5)
     last_played = date - (365 * 3)
-
     game = Game.new(published, false, true, last_played)
+    p game
     expect(game).to be_an_instance_of(Game)
   end
 

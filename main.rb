@@ -1,7 +1,7 @@
 require 'json'
 require './item'
-require './book-label/book'
-require './book-label/label'
+require './association/book'
+require './association/label'
 
 items = []
 labels = []

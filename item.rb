@@ -1,11 +1,13 @@
+# rubocop:disable Style/OptionalBooleanParameter
+
 require 'date'
-require_relative 'author'
+require_relative './association/author'
 
 class Item
-  attr_accessor :publish_date, :archived
-  attr_reader :id, :label, :genre, :author, :source
+  attr_accessor :publish_date
+  attr_reader :id, :label, :genre, :author, :source, :archived
 
-  def initialize(publish_date, archived: false)
+  def initialize(publish_date, archived = false)
     @id = Random.rand(1..100)
     @archived = archived
     @publish_date = publish_date
@@ -46,3 +48,4 @@ class Item
     }.to_json
   end
 end
+# rubocop:enable Style/OptionalBooleanParameter

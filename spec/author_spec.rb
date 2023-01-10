@@ -1,4 +1,4 @@
-require_relative '../association/author'
+require 'spec_helper'
 
 describe '#Author' do
   it 'should have a name' do
