@@ -1,8 +1,9 @@
 require 'date'
+require_relative 'author'
 
 class Item
-  attr_accessor :publish_date
-  attr_reader :id, :archived, :label, :genre, :author, :source
+  attr_accessor :publish_date, :archived
+  attr_reader :id, :label, :genre, :author, :source
 
   def initialize(publish_date, archived: false)
     @id = Random.rand(1..100)
@@ -22,7 +23,7 @@ class Item
 
   def author=(author)
     @author = author
-    author.items << self unless author.items.include?(self)
+    author.add_item(self) unless author.items.include?(self)
   end
 
   def can_be_archived?
