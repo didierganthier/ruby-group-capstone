@@ -9,4 +9,9 @@ class Genre
     @items = []
   end
 
+  def add_genre(item)
+    @items.push(item)
+    item.genre = self
+  end 
+
 end
