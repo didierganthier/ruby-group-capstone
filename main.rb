@@ -21,10 +21,11 @@ end
 def list_items(items)
   items.each do |item|
     puts "ID: #{item.id}"
-    puts "Genre: #{item.genre}"
-    puts "Author: #{item.author}"
-    puts "Source: #{item.source}"
-    puts "Label: #{item.label}"
+    puts "Title: #{item.title}"
+    # puts "Genre: #{item.genre}"
+    # puts "Author: #{item.author}"
+    # puts "Source: #{item.source}"
+    # puts "Label: #{item.label}"
     puts "Publish date: #{item.publish_date}"
     puts "Archived: #{item.archived}"
     puts ''
