@@ -1,4 +1,5 @@
 require 'date'
+require_relative 'author'
 
 class Item
   attr_accessor :publish_date
@@ -22,7 +23,7 @@ class Item
 
   def author=(author)
     @author = author
-    author.items.push(self) unless author.items.include?(self)
+    author.add_item(self) unless author.items.include?(self)
   end
 
   def can_be_archived?
