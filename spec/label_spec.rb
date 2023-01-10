@@ -1,31 +1,31 @@
 require 'spec_helper'
 
 describe Label do
-  let(:label) { Label.new("Science Fiction", "red") }
+  let(:label) { Label.new('Science Fiction', 'red') }
 
-  describe "#initialize" do
-    it "creates a new Label instance" do
+  describe '#initialize' do
+    it 'creates a new Label instance' do
       expect(label).to be_a(Label)
     end
 
-    it "has a unique ID" do
+    it 'has a unique ID' do
       expect(label.id).to be_a(Integer)
     end
 
-    it "has a title" do
-      expect(label.title).to eq("Science Fiction")
+    it 'has a title' do
+      expect(label.title).to eq('Science Fiction')
     end
 
-    it "has a color" do
-      expect(label.color).to eq("red")
+    it 'has a color' do
+      expect(label.color).to eq('red')
     end
 
-    it "has an empty array of items" do
+    it 'has an empty array of items' do
       expect(label.items).to eq([])
     end
   end
 
-  describe "#add_item" do
+  describe '#add_item' do
     let(:item) { double(:item) }
 
     it "sets the item's label to self" do
