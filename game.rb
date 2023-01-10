@@ -10,8 +10,7 @@ class Game < Item
   end
 
   def can_be_archived?
-    @archived = super || (Date.today - Date.parse(@last_played)).to_i / 365 > 2
-    # Return true if published_date is older than 5 years, otherwise false
+    @archived = super || ((Date.today - @last_played_at).to_i / 365) > 2
     @archived
   end
 end
