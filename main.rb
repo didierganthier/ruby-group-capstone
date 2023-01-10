@@ -1,6 +1,10 @@
 require 'json'
 require './item'
 require './book-label/book'
+require './book-label/label'
+
+items = []
+labels = []
 
 at_exit do
   # Serialize the items and labels arrays to JSON
@@ -58,6 +62,15 @@ def add_new_book(items)
   items << book
 end
 
+def add_new_label(labels)
+  puts 'Enter the title:'
+  title = gets.chomp
+  puts 'Enter the color:'
+  color = gets.chomp
+  label = Label.new(title, color)
+  labels << label
+end
+
 def list_labels(labels)
   labels.each do |label|
     puts "ID: #{label.id}"
@@ -73,7 +86,8 @@ loop do
   puts '1. List all books'
   puts '2. List all labels'
   puts '3. Add a new book'
-  puts '4. Quit'
+  puts '4. Add a new label'
+  puts '5. Quit'
 
   choice = gets.chomp
   case choice
@@ -81,10 +95,7 @@ loop do
     # List all books
     items.select { |item| item.is_a?(Book) }.each do |book|
       puts "ID: #{book.id}"
-      puts "Genre: #{book.genre}"
-      puts "Author: #{book.author}"
-      puts "Source: #{book.source}"
-      puts "Label: #{book.label}"
+      puts "Title: #{book.title}"
       puts "Publish date: #{book.publish_date}"
       puts "Cover state: #{book.cover_state}"
       puts "Archived: #{book.archived}"
@@ -97,6 +108,9 @@ loop do
     # Add a new book
     add_new_book(items)
   when '4'
+    # Add a new label
+    add_new_label(labels)
+  when '5'
     break
   else
     puts 'Invalid choice'
