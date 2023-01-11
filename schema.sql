@@ -19,7 +19,7 @@ CREATE TABLE music_albums (
 );
 
 CREATE TABLE author (
-    id  INT,
+    id  SERIAL PRIMARY KEY,
     first_name VARCHAR(100),
     last_name VARCHAR(100),
 );
