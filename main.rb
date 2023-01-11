@@ -3,8 +3,9 @@ require './item'
 require './association/book'
 require './association/label'
 require './game'
-
-games = []
+game_json_from_file = File.read("games.json")
+hash_games =JSON.parse(game_json_from_file)
+games = hash_games.empty? ? [] : hash_games.map { |game| Game.new(game["publish_date"], game["archived"], game["multiplayer"], game["last_played_at"]) }
 items = []
 labels = []
 
@@ -35,10 +36,12 @@ at_exit do
   # Serialize the items and labels arrays to JSON
   items_json = items.to_json
   labels_json = labels.to_json
+  games_json = games.to_json
 
   # Save the JSON strings to files
   File.write('items.json', items_json)
   File.write('labels.json', labels_json)
+  File.write('games.json', games_json)
 end
 
 def list_items(items)
