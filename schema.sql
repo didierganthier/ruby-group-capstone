@@ -18,6 +18,20 @@ CREATE TABLE music_albums (
     FOREIGN KEY(id) REFERENCES item(id)
 );
 
+CREATE TABLE author (
+    id  INT,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+);
+
+CREATE TABLE games(
+    id  SERIAL PRIMARY KEY,
+    multiplayer BOOLEAN,
+    last_played_at DATE,
+    FOREIGN KEY(id) REFERENCES item(id)
+)
+
+
 CREATE TABLE genres (
     id  INT GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(100),
