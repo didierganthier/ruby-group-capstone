@@ -19,12 +19,12 @@ labels = []
 author_json_from_file = File.read('authors.json')
 hash_authors = JSON.parse(author_json_from_file)
 authors = if hash_authors.empty?
-          []
-        else
-          hash_authors.map do |author|
-            Author.new(author['first_name'], author['last_name'], author['items'])
+            []
+          else
+            hash_authors.map do |author|
+              Author.new(author['first_name'], author['last_name'], author['items'])
+            end
           end
-        end
 
 def add_game(games)
   puts 'Enter the published date:'
