@@ -3,9 +3,15 @@ require './item'
 require './association/book'
 require './association/label'
 require './game'
-game_json_from_file = File.read("games.json")
-hash_games =JSON.parse(game_json_from_file)
-games = hash_games.empty? ? [] : hash_games.map { |game| Game.new(game["publish_date"], game["archived"], game["multiplayer"], game["last_played_at"]) }
+game_json_from_file = File.read('games.json')
+hash_games = JSON.parse(game_json_from_file)
+games = if hash_games.empty?
+          []
+        else
+          hash_games.map do |game|
+            Game.new(game['publish_date'], game['archived'], game['multiplayer'], game['last_played_at'])
+          end
+        end
 items = []
 labels = []
 
