@@ -37,3 +37,16 @@ CREATE TABLE genres (
     name VARCHAR(100),
     PRIMARY KEY(id)
 );
+
+CREATE TABLE books (
+    id  INT,
+    name VARCHAR(100),
+    on_spotify BOOLEAN,
+    FOREIGN KEY(id) REFERENCES item(id)
+);
+
+CREATE TABLE label (
+    id  SERIAL PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+);
