@@ -12,15 +12,11 @@ def add_game(games)
   puts 'Enter the published date:'
   publish_date = Date.parse(gets.chomp)
   puts 'Does it have Multiplayer (y/n)'
-  isMultiplayer = gets.chomp
-  if(isMultiplayer == 'y')
-    isMultiplayer = true
-    else 
-    isMultiplayer = false
-    end
+  is_multiplayer = gets.chomp
+  is_multiplayer = is_multiplayer == 'y'
   puts 'Enter the last time you played the game date:'
   last_played_at = Date.parse(gets.chomp)
-  game = Game.new(publish_date, false, isMultiplayer, last_played_at)
+  game = Game.new(publish_date, false, is_multiplayer, last_played_at)
   games << game
 end
 
@@ -91,6 +87,17 @@ def add_new_book(items)
   items << book
 end
 
+def list_books(items)
+  # List all books
+  items.select { |item| item.is_a?(Book) }.each do |book|
+    puts "ID: #{book.id}"
+    puts "Title: #{book.title}"
+    puts "Publish date: #{book.publish_date}"
+    puts "Cover state: #{book.cover_state}"
+    puts "Archived: #{book.archived}"
+  end
+end
+
 def add_new_label(labels)
   puts 'Enter the title:'
   title = gets.chomp
@@ -110,7 +117,7 @@ def list_labels(labels)
   end
 end
 
-loop do
+def options
   puts 'Choose an option:'
   puts '1. List all books'
   puts '2. List all labels'
@@ -119,19 +126,14 @@ loop do
   puts '5. Add a new Game'
   puts '6. list all the games'
   puts '7. Quit'
+end
 
+loop do
+  options
   choice = gets.chomp
   case choice
   when '1'
-    # List all books
-    items.select { |item| item.is_a?(Book) }.each do |book|
-      puts "ID: #{book.id}"
-      puts "Title: #{book.title}"
-      puts "Publish date: #{book.publish_date}"
-      puts "Cover state: #{book.cover_state}"
-      puts "Archived: #{book.archived}"
-      puts ''
-    end
+    list_books(items)
   when '2'
     # List all labels
     list_labels(labels)
