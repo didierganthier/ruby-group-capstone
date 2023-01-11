@@ -2,9 +2,38 @@ require 'json'
 require './item'
 require './association/book'
 require './association/label'
+require './game'
 
+games = []
 items = []
 labels = []
+
+def add_game(games)
+  puts 'Enter the published date:'
+  publish_date = Date.parse(gets.chomp)
+  puts 'Does it have Multiplayer (y/n)'
+  isMultiplayer = gets.chomp
+  if(isMultiplayer == 'y')
+    isMultiplayer = true
+    else 
+    isMultiplayer = false
+    end
+  puts 'Enter the last time you played the game date:'
+  last_played_at = Date.parse(gets.chomp)
+  game = Game.new(publish_date, false, isMultiplayer, last_played_at)
+  games << game
+end
+
+def list_games(games)
+  games.each do |game|
+    puts "ID: #{game.id}"
+    puts "Publish date: #{game.publish_date}"
+    puts "Multiplayer: #{game.multiplayer}"
+    puts "Last played at: #{game.last_played_at}"
+    puts "Archived: #{game.archived}"
+    puts ''
+  end
+end
 
 at_exit do
   # Serialize the items and labels arrays to JSON
@@ -87,7 +116,9 @@ loop do
   puts '2. List all labels'
   puts '3. Add a new book'
   puts '4. Add a new label'
-  puts '5. Quit'
+  puts '5. Add a new Game'
+  puts '6. list all the games'
+  puts '7. Quit'
 
   choice = gets.chomp
   case choice
@@ -111,6 +142,10 @@ loop do
     # Add a new label
     add_new_label(labels)
   when '5'
+    add_game(games)
+  when '6'
+    list_games(games)
+  when '7'
     break
   else
     puts 'Invalid choice'
