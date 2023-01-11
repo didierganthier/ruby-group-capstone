@@ -2,6 +2,7 @@ require 'json'
 require './item'
 require './association/book'
 require './association/label'
+require './association/author'
 require './game'
 game_json_from_file = File.read('games.json')
 hash_games = JSON.parse(game_json_from_file)
@@ -14,6 +15,16 @@ games = if hash_games.empty?
         end
 items = []
 labels = []
+
+author_json_from_file = File.read('authors.json')
+hash_authors = JSON.parse(author_json_from_file)
+authors = if hash_authors.empty?
+          []
+        else
+          hash_authors.map do |author|
+            Author.new(author['first_name'], author['last_name'], author['items'])
+          end
+        end
 
 def add_game(games)
   puts 'Enter the published date:'
@@ -126,15 +137,34 @@ def list_labels(labels)
   end
 end
 
+def add_author(authors)
+  p 'First Name: '
+  first_name = gets.chomp
+  p 'Last Name: '
+  last_name = gets.chomp
+  author = Author.new(first_name, last_name, [])
+  authors << author
+end
+
+def list_authors(authors)
+  authors.each do |author|
+    puts "ID: #{author.id}"
+    puts "First Name: #{author.first_name}"
+    puts "Last Name: #{author.last_name}"
+  end
+end
+
 def options
   puts 'Choose an option:'
   puts '1. List all books'
   puts '2. List all labels'
   puts '3. Add a new book'
   puts '4. Add a new label'
-  puts '5. Add a new Game'
-  puts '6. list all the games'
-  puts '7. Quit'
+  puts '5. Add a new game'
+  puts '6. List all the games'
+  puts '7. Add an author'
+  puts '8. List all the authors'
+  puts '9. Quit'
 end
 
 loop do
@@ -157,6 +187,10 @@ loop do
   when '6'
     list_games(games)
   when '7'
+    add_author(authors)
+  when '8'
+    list_authors(authors)
+  when '9'
     break
   else
     puts 'Invalid choice'
