@@ -54,11 +54,13 @@ at_exit do
   items_json = items.to_json
   labels_json = labels.to_json
   games_json = games.to_json
+  authors_json = author.to_json
 
   # Save the JSON strings to files
   File.write('items.json', items_json)
   File.write('labels.json', labels_json)
   File.write('games.json', games_json)
+  File.write('authors.json', authors_json)
 end
 
 def list_items(items)
