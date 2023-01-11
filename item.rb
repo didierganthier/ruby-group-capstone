@@ -29,7 +29,10 @@ class Item
   end
 
   def can_be_archived?
-    (Date.today - publish_date).to_i / 365 > 10
+    # (Date.today - publish_date).to_i / 365 > 10
+    date_used = Date.parse(@publish_date)
+    difference = Date.today.year - date_used.year
+    difference > 10
   end
 
   def move_to_archive
