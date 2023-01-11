@@ -2,7 +2,6 @@ require 'json'
 require './item'
 require './association/book'
 require './association/label'
-
 items = []
 labels = []
 

@@ -1,0 +1,12 @@
+[
+    {
+        "name": "storm is over",
+        "publish_date": "2000-10-10",
+        "on_spotify": true
+    },
+    {
+        "name": "Next in line",
+        "publish_date": "2020-10-01",
+        "on_spotify": false
+    }
+]
