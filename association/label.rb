@@ -15,10 +15,10 @@ class Label
 
   def to_json(_options = {})
     {
-      id: id,
-      title: title,
-      color: color,
-      items: items
+      id:,
+      title:,
+      color:,
+      items:
     }.to_json
   end
 end

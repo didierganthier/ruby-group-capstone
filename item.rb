@@ -1,7 +1,6 @@
 # rubocop:disable Style/OptionalBooleanParameter
 
 require 'date'
-require_relative './association/author'
 
 class Item
   attr_accessor :publish_date
@@ -41,13 +40,13 @@ class Item
 
   def to_json(_options = {})
     {
-      id: id,
-      archived: archived,
-      publish_date: publish_date,
-      label: label,
-      genre: genre,
-      author: author,
-      source: source
+      id:,
+      archived:,
+      publish_date:,
+      label:,
+      genre:,
+      author:,
+      source:
     }.to_json
   end
 end
