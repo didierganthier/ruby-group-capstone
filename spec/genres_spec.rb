@@ -4,7 +4,7 @@ describe Genre do
   context 'when testing genre class do' do
     name = 'rock'
     genre = Genre.new(name)
-    item = Item.new('2002-10-10')
+    item = Item.new('2014-11-10')
     it 'should return an instance of the class' do
       expect(genre).to be_instance_of(Genre)
     end
