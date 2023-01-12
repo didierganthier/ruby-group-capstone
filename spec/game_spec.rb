@@ -7,14 +7,15 @@ describe '#Game' do
     published = date - (365 * 5)
     last_played = date - (365 * 3)
     game = Game.new(published, false, true, last_played)
-    p game
+
     expect(game).to be_an_instance_of(Game)
   end
 
   it 'should return true if the game can be archived' do
     date = Date.today
+
     published = date - (365 * 5)
-    last_played = date - (365 * 3)
+    last_played = date - (365 * 4)
 
     game = Game.new(published, false, true, last_played)
     expect(game.can_be_archived?).to be true

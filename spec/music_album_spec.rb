@@ -2,7 +2,9 @@ require_relative '../classes/music_album'
 describe MusicAlbum do
   context 'when testing music album' do
     name = 'Lexus Bay'
-    publish_date = '2000-10-10'
+    date = Date.today
+
+    publish_date = date - (365 * 23)
     on_spotify = true
     music_album = MusicAlbum.new(name, publish_date, on_spotify)
 
