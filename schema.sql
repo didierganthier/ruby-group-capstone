@@ -50,3 +50,11 @@ CREATE TABLE label (
     first_name VARCHAR(100),
     last_name VARCHAR(100),
 );
+
+CREATE INDEX games_id ON games (id);
+CREATE INDEX books_id ON books (id);
+CREATE INDEX item_id ON item (id);
+CREATE INDEX item_genre_id ON item (genre_id);
+CREATE INDEX item_author_id ON item (id);
+CREATE INDEX item_label_id ON item (id);
+
