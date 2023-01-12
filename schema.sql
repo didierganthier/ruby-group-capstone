@@ -53,6 +53,7 @@ CREATE TABLE label (
 
 CREATE INDEX games_id ON games (id);
 CREATE INDEX books_id ON books (id);
+CREATE INDEX music_albums_id ON music_albums (id);
 CREATE INDEX item_id ON item (id);
 CREATE INDEX item_genre_id ON item (genre_id);
 CREATE INDEX item_author_id ON item (id);
