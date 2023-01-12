@@ -81,10 +81,6 @@ def list_items(items)
   items.each do |item|
     puts "ID: #{item.id}"
     puts "Title: #{item.title}"
-    # puts "Genre: #{item.genre}"
-    # puts "Author: #{item.author}"
-    # puts "Source: #{item.source}"
-    # puts "Label: #{item.label}"
     puts "Publish date: #{item.publish_date}"
     puts "Archived: #{item.archived}"
     puts ''
@@ -112,14 +108,6 @@ def add_new_book(items)
   puts 'Enter the cover state:'
   cover_state = gets.chomp
   book = Book.new(title, cover_state, publish_date, archived: false)
-  # puts 'Enter the genre:'
-  # book.genre = gets.chomp
-  # puts 'Enter the author:'
-  # book.author = gets.chomp
-  # puts 'Enter the source:'
-  # book.source = gets.chomp
-  # puts 'Enter the label:'
-  # book.label = gets.chomp
   items << book
 end
 
