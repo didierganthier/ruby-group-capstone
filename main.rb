@@ -4,6 +4,14 @@ require './association/book'
 require './association/label'
 require './association/author'
 require './game'
+require_relative './classes/music_album'
+require_relative './classes/genre'
+require_relative './modules/music_album_module'
+require_relative './modules/genres_module'
+
+@music_albums = load_music_albums
+@load_genres = load_genres
+
 game_json_from_file = File.read('games.json')
 hash_games = JSON.parse(game_json_from_file)
 games = if hash_games.empty?
@@ -156,6 +164,39 @@ def list_authors(authors)
   end
 end
 
+def list_all_music_album
+  puts 'Music Albums'
+  @music_albums.each do |music_album|
+    puts "Name: #{music_album.name}, Publish Date: #{music_album.publish_date}, On Spotify: #{music_album.on_spotify}"
+  end
+end
+
+def list_all_genres
+  puts 'Genres:'
+  puts 'No genre found' if @load_genres.empty?
+  @load_genres.each do |genre|
+    puts "Genre name: #{genre.name}"
+  end
+end
+
+def add_music_album
+  puts 'Album name: '
+  name = gets.chomp
+
+  puts 'Date of publish [Enter date in format (yyyy-mm-dd)]'
+  publish_date = gets.chomp
+
+  puts 'Is it available on Spotify? Y/N'
+  on_spotify = gets.chomp.downcase
+  case on_spotify
+  when 'y'
+    @music_albums.push(MusicAlbum.new(name, publish_date, true))
+  when 'n'
+    @music_albums.push(MusicAlbum.new(name, publish_date, false))
+  end
+  puts 'Music album created'
+end
+
 def options
   puts 'Choose an option:'
   puts '1. List all books'
@@ -166,7 +207,10 @@ def options
   puts '6. List all the games'
   puts '7. Add an author'
   puts '8. List all the authors'
-  puts '9. Quit'
+  puts '9. List all genre'
+  puts '10.List Music Albums'
+  puts '11.Add Music Albums'
+  puts '12.Quit.'
 end
 
 loop do
@@ -193,6 +237,12 @@ loop do
   when '8'
     list_authors(authors)
   when '9'
+    list_all_genres
+  when '10'
+    list_all_music_album
+  when '11'
+    add_music_album
+  when '12'
     break
   else
     puts 'Invalid choice'
